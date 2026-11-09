@@ -1,0 +1,438 @@
+:root {
+  /* Fondo y Superficies - Modo Oscuro */
+  --tinta: #e0e0e0;          /* texto principal claro */
+  --tinta-suave: #a0a0a0;    /* texto secundario */
+  --papel: #121212;          /* fondo de la página oscuro */
+  --blanco: #1e1e1e;         /* superficies (tarjetas, contenedores) */
+  --linea: #333333;          /* bordes sutiles oscuros */
+  
+  /* Acentos y Acciones - Verde Aguamarina */
+  --cobalto: #48d1cc;        /* acción principal (Medium Turquoise) */
+  --cobalto-oscuro: #3cb0ab; /* hover (un poco más oscuro) */
+  --ambar: #66dfda;          /* valores calculados (aguamarina claro) */
+  
+  /* Estados (ajustados para legibilidad en oscuro) */
+  --exito: #3ddc97;
+  --error: #ff6b6b;
+
+  --fuente: "Segoe UI", "Helvetica Neue", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --radio: 10px;
+  --ancho: 860px;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--papel);
+  /* cuadrícula de cuaderno (adaptada a modo oscuro) */
+  background-image:
+    linear-gradient(rgba(72, 209, 204, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72, 209, 204, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-attachment: fixed;
+}
+
+body {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tinta);
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--cobalto);
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cobalto);
+}
+
+p,
+li {
+  max-width: 68ch;
+}
+
+p {
+  margin: 0 0 0.9rem;
+}
+
+a {
+  color: var(--cobalto);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--cobalto-oscuro);
+}
+
+:focus-visible {
+  outline: 3px solid var(--cobalto);
+  outline-offset: 2px;
+}
+
+/* ---------- 3. Encabezado ---------- */
+header {
+  background: var(--blanco);
+  color: var(--tinta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+header h1 {
+  margin-bottom: 0.4rem;
+}
+
+header p {
+  margin: 0;
+  color: var(--tinta-suave);
+}
+
+/* enlace "← Volver al menú" */
+header a {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.2rem 0.75rem;
+  border: 1px solid rgba(72, 209, 204, 0.4);
+  border-radius: 999px;
+  color: var(--cobalto);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+
+header a:hover {
+  background: rgba(72, 209, 204, 0.1);
+}
+
+/* conceptos del ejercicio: "Ciclo while · Acumuladores · ..." */
+#etiquetas {
+  color: var(--ambar);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ---------- 4. Secciones ---------- */
+main > section {
+  margin-bottom: 1.5rem;
+}
+
+/* tarjetas del menú principal */
+#seccionEjemplos,
+#seccionTaller,
+#seccionReto {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.25rem 1.5rem;
+}
+
+#seccionEjemplos p,
+#seccionReto p {
+  margin-bottom: 0;
+}
+
+/* lista de ejercicios del taller */
+#seccionTaller ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#seccionTaller li {
+  max-width: none;
+  border-top: 1px solid var(--linea);
+}
+
+#seccionTaller li:first-child {
+  border-top: 0;
+}
+
+#seccionTaller li a {
+  display: block;
+  padding: 0.6rem 0.25rem;
+  text-decoration: none;
+  color: var(--tinta);
+  transition: color 0.15s, padding-left 0.15s;
+}
+
+#seccionTaller li a:hover {
+  color: var(--cobalto);
+  padding-left: 0.6rem;
+}
+
+/* enunciado del ejercicio */
+#enunciado {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-left: 5px solid var(--cobalto);
+  border-radius: var(--radio);
+  padding: 1.25rem 1.5rem;
+}
+
+#enunciado ul {
+  margin: 0 0 0.9rem;
+  padding-left: 1.25rem;
+}
+
+#enunciado li {
+  margin-bottom: 0.3rem;
+}
+
+#enunciado p:last-child,
+#enunciado ul:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 5. Formularios ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-top: 0.6rem;
+  font-weight: 600;
+}
+
+label:first-child {
+  margin-top: 0;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--papel);
+  border: 1.5px solid var(--linea);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:hover,
+textarea:hover {
+  border-color: var(--tinta-suave);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cobalto);
+  background: var(--papel);
+  box-shadow: 0 0 0 3px rgba(72, 209, 204, 0.2);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #666;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+button {
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 0.65rem 1.4rem;
+  font: inherit;
+  font-weight: 700;
+  color: #000; /* Texto negro para contrastar con el fondo aguamarina */
+  background: var(--cobalto);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--cobalto-oscuro);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* ---------- 6. Resultados (panel oscuro) ---------- */
+/* En modo oscuro, el panel de resultados puede ser un tono ligeramente distinto o mantener la armonía */
+#resultado {
+  background: #0d0d0d; /* Aún más oscuro que el fondo para destacar */
+  color: #e6ecf8;
+  border: 1px solid var(--linea);
+  border-left: 4px solid var(--cobalto);
+  border-radius: var(--radio);
+  padding: 1.25rem 1.5rem;
+}
+
+#resultado h2 {
+  color: var(--cobalto);
+}
+
+#resultado p {
+  margin-bottom: 0.5rem;
+}
+
+/* mensaje principal: "Aún no hay datos...", "Acceso concedido", etc. */
+#mensaje {
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.9rem;
+  background: rgba(72, 209, 204, 0.08);
+  border-left: 4px solid var(--ambar);
+  border-radius: 6px;
+}
+
+/* valores calculados */
+#resultado strong {
+  color: var(--ambar);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* listas generadas por JavaScript (registro, detalle, notas...) */
+#resultado ul {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+#resultado li {
+  max-width: none;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  font-variant-numeric: tabular-nums;
+}
+
+#resultado li:last-child {
+  border-bottom: 0;
+}
+
+/* tablas generadas por JavaScript */
+table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+  color: var(--ambar);
+  font-weight: 700;
+}
+
+/* elementos vacíos no ocupan espacio */
+#resultado ul:empty,
+#resultado table:empty {
+  display: none;
+}
+
+/* ---------- 7. Página de ejemplos (sin header ni main) ---------- */
+body > h1 {
+  margin-bottom: 1.5rem;
+}
+
+body > ul,
+body > p[id] {
+  background: var(--blanco);
+  color: var(--tinta);
+  border-radius: var(--radio);
+  padding: 0.9rem 1.25rem;
+  margin: 0 0 2rem;
+  border: 1px solid var(--linea);
+}
+
+body > ul {
+  list-style: none;
+  max-width: none;
+  font-variant-numeric: tabular-nums;
+}
+
+body > ul li {
+  max-width: none;
+  padding: 0.25rem 0;
+}
+
+body > ul:empty,
+body > p[id]:empty {
+  display: none;
+}
+
+/* ---------- 8. Estados opcionales (para usar desde JS) ---------- */
+.exito {
+  color: var(--exito);
+  font-weight: 700;
+}
+
+.error {
+  color: var(--error);
+  font-weight: 700;
+}
+
+.advertencia {
+  color: var(--ambar);
+  font-weight: 700;
+}
+
+/* ---------- 9. Pantallas pequeñas ---------- */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 0.9rem 3rem;
+  }
+
+  header,
+  form,
+  #enunciado,
+  #resultado,
+  #seccionEjemplos,
+  #seccionTaller,
+  #seccionReto {
+    padding: 1rem 1.1rem;
+  }
+
+  button {
+    align-self: stretch;
+  }
+}
+
+/* ---------- 10. Accesibilidad ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
